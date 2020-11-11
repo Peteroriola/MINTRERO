@@ -8,4 +8,6 @@
 
 import UIKit
 
-let BASEURL = ""
+let BASEURL = "https://api.github.com/"
+
+let GET_RAILS_OBJECT = BASEURL+"repos/rails-api/rails-api/git/refs/heads/master"

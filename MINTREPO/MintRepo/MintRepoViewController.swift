@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class MintRepoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -55,9 +57,37 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 0, width: 0)
                 
       [leftSideBarLabel, gitRepoUITableView].forEach{ scrollView.addSubview($0) }
+        setupLayout()
         
+        getRailsRepositoryCommits()
     }
 
+    
+    func getRailsRepositoryCommits() {
+        let urlString = GET_RAILS_OBJECT
+        let url  = URL.init(string: urlString)
+        Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseJSON { response in
+            if response.result.isSuccess {
+
+                let transfertData : JSON = JSON(response.result.value!)
+               // self.transferToBankData(json : transfertData)
+                print(transfertData, "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+
+
+                
+            }else {
+               
+//            let alert = UIAlertController.alert(title: "Product Unavailable", message: "")
+//                self.present(alert, animated: true)
+//                return
+            }
+        }
+        
+    }
+    
+    
+    
+    
         let cellSpacingHeight: CGFloat = 10
 
         func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -90,7 +120,17 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
 
         }
 
-        
+        func setupLayout() {
+                  let width = view.frame.width
+
+        leftSideBarLabel.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, height: 30, width: width - 40)
+          
+          
+        gitRepoUITableView.anchor(top: leftSideBarLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 45, width: width - 60)
+          gitRepoUITableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+            
+            
+    }
 
 }
 
