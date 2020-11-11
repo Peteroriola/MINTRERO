@@ -16,6 +16,7 @@
 		428BFCC0255C53DF009AA2DE /* Estentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCBF255C53DF009AA2DE /* Estentions.swift */; };
 		428BFCC2255C543B009AA2DE /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCC1255C543B009AA2DE /* ApiConstants.swift */; };
 		428BFCC5255C60A1009AA2DE /* MintRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCC4255C60A1009AA2DE /* MintRepoTableViewCell.swift */; };
+		428BFCC7255C7800009AA2DE /* CommitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCC6255C7800009AA2DE /* CommitModel.swift */; };
 		9EC51247E532C4112752D328 /* Pods_MINTREPO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFDE8B2DC7200EBCEC6FDB7 /* Pods_MINTREPO.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		428BFCBF255C53DF009AA2DE /* Estentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estentions.swift; sourceTree = "<group>"; };
 		428BFCC1255C543B009AA2DE /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		428BFCC4255C60A1009AA2DE /* MintRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintRepoTableViewCell.swift; sourceTree = "<group>"; };
+		428BFCC6255C7800009AA2DE /* CommitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitModel.swift; sourceTree = "<group>"; };
 		8EFDE8B2DC7200EBCEC6FDB7 /* Pods_MINTREPO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MINTREPO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3443E40EA50DB6B6AAEA021 /* Pods-MINTREPO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MINTREPO.debug.xcconfig"; path = "Target Support Files/Pods-MINTREPO/Pods-MINTREPO.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,9 +71,10 @@
 		428BFCA7255C3796009AA2DE /* MINTREPO */ = {
 			isa = PBXGroup;
 			children = (
-				428BFCBC255C5290009AA2DE /* Utility */,
 				428BFCA8255C3796009AA2DE /* AppDelegate.swift */,
+				428BFCBC255C5290009AA2DE /* Utility */,
 				428BFCC3255C600E009AA2DE /* MintRepo */,
+				428BFCC8255C7804009AA2DE /* Model */,
 				428BFCAE255C3796009AA2DE /* Main.storyboard */,
 				428BFCB1255C379B009AA2DE /* Assets.xcassets */,
 				428BFCB3255C379B009AA2DE /* LaunchScreen.storyboard */,
@@ -97,6 +100,14 @@
 				428BFCAC255C3796009AA2DE /* MintRepoViewController.swift */,
 			);
 			path = MintRepo;
+			sourceTree = "<group>";
+		};
+		428BFCC8255C7804009AA2DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				428BFCC6255C7800009AA2DE /* CommitModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		80F02529DCECC9A625E380E1 /* Frameworks */ = {
@@ -231,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				428BFCC7255C7800009AA2DE /* CommitModel.swift in Sources */,
 				428BFCBE255C52B7009AA2DE /* HelpFunctions.swift in Sources */,
 				428BFCAD255C3796009AA2DE /* MintRepoViewController.swift in Sources */,
 				428BFCC2255C543B009AA2DE /* ApiConstants.swift in Sources */,

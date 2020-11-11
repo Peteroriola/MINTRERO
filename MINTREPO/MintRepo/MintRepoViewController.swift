@@ -12,17 +12,19 @@ import SwiftyJSON
 
 class MintRepoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var gitRepoUITableView = UITableView()
-    let gitRepoUITableViewiIdentifier = "cell"
+        var gitRepoUITableView = UITableView()
+        let gitRepoUITableViewiIdentifier = "cell"
+        var shaCommitObject = ""
     
-    lazy var scrollView: UIScrollView = {
-                  let view = UIScrollView()
-                  
-                  view.translatesAutoresizingMaskIntoConstraints = false
-                  view.contentSize.height = 800
-                  view.backgroundColor = .white
-                  return view
-              }()
+        var commitModel = [CommitModel]()
+        lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = 800
+        view.backgroundColor = .white
+        return view
+        }()
     
         var leftSideBarLabel : UILabel = {
         let label = UILabel()
@@ -37,7 +39,7 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
       
         navigationItem.titleView = navbarTitle(title: "Rails Repository Commits")
@@ -62,16 +64,16 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         getRailsRepositoryCommits()
     }
 
-    
+    //MARK: ------ Get Rails Object from Github
     func getRailsRepositoryCommits() {
         let urlString = GET_RAILS_OBJECT
         let url  = URL.init(string: urlString)
         Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseJSON { response in
             if response.result.isSuccess {
 
-                let transfertData : JSON = JSON(response.result.value!)
-               // self.transferToBankData(json : transfertData)
-                print(transfertData, "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+                let gitHubData : JSON = JSON(response.result.value!)
+               self.updateRailsRepositoryCommits(json : gitHubData)
+                print(gitHubData, "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
 
 
                 
@@ -85,9 +87,63 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    func  updateRailsRepositoryCommits(json : JSON) {
+    
+    if let shaObject = json["object"]["sha"].string {
+   
+        shaCommitObject = shaObject
+        print(shaObject, "------->--------------->" )
+    }
+        
+        getRailsRepositoryCommitsObject()
+    }
     
     
+        //MARK: ------ Get Rails Commit  Object from Github
+        func getRailsRepositoryCommitsObject() {
+            let urlString = GET_COMMIT_OBJECT+shaCommitObject
+            let url  = URL.init(string: urlString)
+            Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseJSON { response in
+                if response.result.isSuccess {
+
+                    let gitHubCommitData : JSON = JSON(response.result.value!)
+                   self.UpdateRailsRepositoryCommitsObject(json : gitHubCommitData)
+                    print(gitHubCommitData, "Commit--------------->---------->")
+
+
+                    
+                }else {
+                   
+    //            let alert = UIAlertController.alert(title: "Product Unavailable", message: "")
+    //                self.present(alert, animated: true)
+    //                return
+                }
+            }
+            
+        }
+        
+        func  UpdateRailsRepositoryCommitsObject(json : JSON) {
+        
+            let message = json["message"].stringValue
+            
+            for (_, object) in json["author"] {
+                
+                let name = object["name"].stringValue
+                let date = object["date"].stringValue
+                let email = object["email"].stringValue
+                //let message = object["message"].stringValue
+                
+                let data = CommitModel(date: date, name: name, email: email, message: message)
+                commitModel.append(data)
+                
+                print(data, "data-----------------------------------?")
+                
+            }
+            gitRepoUITableView.reloadData()
+            
+        }
     
+    //MARK: ------ TableView to list Rails Commits
         let cellSpacingHeight: CGFloat = 10
 
         func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -102,7 +158,7 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         }
 
         func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+            return commitModel.count
         }
 
 
@@ -115,18 +171,26 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: gitRepoUITableViewiIdentifier, for: indexPath) as? MintRepoTableViewCell else {fatalError("Unable to deque cell1")}
+            cell.nameLabel.text = commitModel[indexPath.section].name
+            cell.dateLabel.text = commitModel[indexPath.section].date
+            cell.emailLabel.text = commitModel[indexPath.section].email
+            cell.authorImage.image = UIImage(named: "egghead")
+            
             
             return cell 
 
         }
-
+       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 70
+         
+     }
         func setupLayout() {
                   let width = view.frame.width
 
         leftSideBarLabel.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, height: 30, width: width - 40)
           
           
-        gitRepoUITableView.anchor(top: leftSideBarLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 45, width: width - 60)
+        gitRepoUITableView.anchor(top: leftSideBarLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 600, width: width - 60)
           gitRepoUITableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
             
             
