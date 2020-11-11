@@ -54,7 +54,7 @@ class MintRepoTableViewCell: UITableViewCell {
                   let label = UILabel()
                   //label.numberOfLines = 0
                   label.adjustsFontSizeToFitWidth = true
-                  label.textAlignment = .right
+                  label.textAlignment = .left
                   return label
               }()
               
@@ -81,12 +81,12 @@ class MintRepoTableViewCell: UITableViewCell {
                   
                   authorImage.anchor(top: safeAreaLayoutGuide.topAnchor, left: blueUIView.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, height: 40, width: 40)
               
-                  nameLabel.anchor(top: safeAreaLayoutGuide.topAnchor, left: authorImage.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, height: 20, width: 100)
+                  nameLabel.anchor(top: safeAreaLayoutGuide.topAnchor, left: authorImage.rightAnchor, bottom: nil, right: nil, paddingTop: 1, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, height: 20, width: width - 100)
             
-                emailLabel.anchor(top: nameLabel.bottomAnchor, left: authorImage.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, height: 20, width: 100)
+                emailLabel.anchor(top: nameLabel.bottomAnchor, left: authorImage.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, height: 20, width: width - 100)
                         
                
-                  dateLabel.anchor(top: safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, height: 30, width: width - 100)
+                  dateLabel.anchor(top: emailLabel.bottomAnchor, left: authorImage.rightAnchor, bottom: backgroundUIView.bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 20, height: 30, width: width - 100)
                   
                   
               backgroundUIView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, height: 0, width: 0)

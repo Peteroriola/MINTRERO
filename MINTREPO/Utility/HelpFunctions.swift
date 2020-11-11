@@ -34,3 +34,22 @@ func navbarTitle(title: String) -> UILabel {
     label.sizeToFit()
     return label
 }
+
+func getHumanReadableDayFormat(nonReadableFormat:String) -> String {
+   
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .iso8601)
+    formatter.locale = .current
+    formatter.timeZone = .current
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    let date = formatter.date(from: nonReadableFormat)
+    
+    formatter.timeZone = .current
+    formatter.dateFormat = "dd MMM yyyy"
+    formatter.string(from: date ?? Date())
+    
+    let readableFormat = formatter.string(from: date ?? Date())
+    
+    return readableFormat
+}
+

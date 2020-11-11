@@ -126,11 +126,11 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         
             let message = json["message"].stringValue
             
-            for (_, object) in json["author"] {
+            //for (_, object) in json["author"] {
                 
-                let name = object["name"].stringValue
-                let date = object["date"].stringValue
-                let email = object["email"].stringValue
+                let name = json["author"]["name"].stringValue
+                let date = json["author"]["date"].stringValue
+                let email = json["author"]["email"].stringValue
                 //let message = object["message"].stringValue
                 
                 let data = CommitModel(date: date, name: name, email: email, message: message)
@@ -138,7 +138,7 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 print(data, "data-----------------------------------?")
                 
-            }
+            //}
             gitRepoUITableView.reloadData()
             
         }
@@ -171,8 +171,9 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: gitRepoUITableViewiIdentifier, for: indexPath) as? MintRepoTableViewCell else {fatalError("Unable to deque cell1")}
+            
             cell.nameLabel.text = commitModel[indexPath.section].name
-            cell.dateLabel.text = commitModel[indexPath.section].date
+            cell.dateLabel.text = getHumanReadableDayFormat(nonReadableFormat: "\(commitModel[indexPath.section].name ?? "")")
             cell.emailLabel.text = commitModel[indexPath.section].email
             cell.authorImage.image = UIImage(named: "egghead")
             
@@ -180,8 +181,12 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
             return cell 
 
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       tableView.deselectRow(at: indexPath, animated: true)
+    }
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return 100
          
      }
         func setupLayout() {
