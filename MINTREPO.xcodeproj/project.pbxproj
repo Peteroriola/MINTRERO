@@ -12,6 +12,9 @@
 		428BFCB0255C3796009AA2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 428BFCAE255C3796009AA2DE /* Main.storyboard */; };
 		428BFCB2255C379B009AA2DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 428BFCB1255C379B009AA2DE /* Assets.xcassets */; };
 		428BFCB5255C379B009AA2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 428BFCB3255C379B009AA2DE /* LaunchScreen.storyboard */; };
+		428BFCBE255C52B7009AA2DE /* HelpFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCBD255C52B7009AA2DE /* HelpFunctions.swift */; };
+		428BFCC0255C53DF009AA2DE /* Estentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCBF255C53DF009AA2DE /* Estentions.swift */; };
+		428BFCC2255C543B009AA2DE /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428BFCC1255C543B009AA2DE /* ApiConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		428BFCB1255C379B009AA2DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		428BFCB4255C379B009AA2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		428BFCB6255C379B009AA2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		428BFCBD255C52B7009AA2DE /* HelpFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFunctions.swift; sourceTree = "<group>"; };
+		428BFCBF255C53DF009AA2DE /* Estentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estentions.swift; sourceTree = "<group>"; };
+		428BFCC1255C543B009AA2DE /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 		428BFCA7255C3796009AA2DE /* MINTREPO */ = {
 			isa = PBXGroup;
 			children = (
+				428BFCBC255C5290009AA2DE /* Utility */,
 				428BFCA8255C3796009AA2DE /* AppDelegate.swift */,
 				428BFCAC255C3796009AA2DE /* ViewController.swift */,
 				428BFCAE255C3796009AA2DE /* Main.storyboard */,
@@ -62,6 +69,16 @@
 				428BFCB6255C379B009AA2DE /* Info.plist */,
 			);
 			path = MINTREPO;
+			sourceTree = "<group>";
+		};
+		428BFCBC255C5290009AA2DE /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				428BFCBD255C52B7009AA2DE /* HelpFunctions.swift */,
+				428BFCBF255C53DF009AA2DE /* Estentions.swift */,
+				428BFCC1255C543B009AA2DE /* ApiConstants.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				428BFCBE255C52B7009AA2DE /* HelpFunctions.swift in Sources */,
 				428BFCAD255C3796009AA2DE /* ViewController.swift in Sources */,
+				428BFCC2255C543B009AA2DE /* ApiConstants.swift in Sources */,
 				428BFCA9255C3796009AA2DE /* AppDelegate.swift in Sources */,
+				428BFCC0255C53DF009AA2DE /* Estentions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
