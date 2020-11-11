@@ -54,3 +54,41 @@ import UIKit
         
     }
 
+extension UINavigationController {
+    
+    static func pushToNewNavigation(controller: UIViewController, navController: UINavigationController) {
+        navController.pushViewController(controller, animated: true)
+    }
+    
+    
+    static func pushToNewNavigationWithCallBack(controller: UIViewController, navController: UINavigationController, completion: @escaping () -> () ) {
+        completion()
+        navController.pushViewController(controller, animated: true)
+    }
+    
+    static func presentNewNavigationController(controller: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: controller)
+        return navController
+    }
+    
+    static func presentNewNavigationControllerWithCallBack(controller: UIViewController, completion: @escaping () -> ()) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: controller)
+        completion()
+        return navController
+    }
+    
+}
+
+extension UINavigationBar {
+    func transparentNavigationBar() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = false
+    }
+}
+
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return topViewController?.preferredStatusBarStyle ?? .default
+    }
+}
