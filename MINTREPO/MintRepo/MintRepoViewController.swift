@@ -73,15 +73,14 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
 
                 let gitHubData : JSON = JSON(response.result.value!)
                self.updateRailsRepositoryCommits(json : gitHubData)
-                print(gitHubData, "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+                print(gitHubData)
 
 
                 
             }else {
                
-//            let alert = UIAlertController.alert(title: "Product Unavailable", message: "")
-//                self.present(alert, animated: true)
-//                return
+                let alert = UIAlertController(title: "No Response", message: "Please check your network connection", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action: UIAlertAction!) in}))
             }
         }
         
@@ -108,7 +107,7 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
 
                     let gitHubCommitData : JSON = JSON(response.result.value!)
                    self.UpdateRailsRepositoryCommitsObject(json : gitHubCommitData)
-                    print(gitHubCommitData, "Commit--------------->---------->")
+                  
 
 
                     
@@ -123,20 +122,14 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
         func  UpdateRailsRepositoryCommitsObject(json : JSON) {
         
             let message = json["message"].stringValue
-            
-            //for (_, object) in json["author"] {
                 
                 let name = json["author"]["name"].stringValue
                 let date = json["author"]["date"].stringValue
                 let email = json["author"]["email"].stringValue
-                //let message = object["message"].stringValue
                 
                 let data = CommitModel(date: date, name: name, email: email, message: message)
                 commitModel.append(data)
                 
-                print(data, "data-----------------------------------?")
-                
-            //}
             gitRepoUITableView.reloadData()
             
         }

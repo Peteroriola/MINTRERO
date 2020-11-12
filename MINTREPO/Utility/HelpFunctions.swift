@@ -9,10 +9,6 @@
 import UIKit
 
 
-
-
-    
-
     func colorNavigationBar(navigationController: UINavigationController?){
         navigationController?.navigationBar.barTintColor = UIColor.black
         navigationController?.navigationBar.backgroundColor = UIColor.black
@@ -22,9 +18,7 @@ import UIKit
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
-     
-
-}
+     }
 
 func navbarTitle(title: String) -> UILabel {
     let label = UILabel()
