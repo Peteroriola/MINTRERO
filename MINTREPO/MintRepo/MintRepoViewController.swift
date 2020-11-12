@@ -113,10 +113,8 @@ class MintRepoViewController: UIViewController, UITableViewDelegate, UITableView
 
                     
                 }else {
-                   
-    //            let alert = UIAlertController.alert(title: "Product Unavailable", message: "")
-    //                self.present(alert, animated: true)
-    //                return
+                    let alert = UIAlertController(title: "No Response", message: "Please check your network connection", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action: UIAlertAction!) in}))
                 }
             }
             
